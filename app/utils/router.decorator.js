@@ -14,9 +14,8 @@ const setRouter = method => path => {
   }
 }
 
-export const Controller = prefix => (target) => {
-  target.prototype.prefix = prefix
-}
+export const Controller = prefix => (target) => (target.prototype.prefix = prefix)
+
 
 export const Get = setRouter('get')
 export const Post = setRouter('post')
