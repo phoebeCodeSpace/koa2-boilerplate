@@ -6,4 +6,6 @@
 - [x] 路由的自动加载
 - [x] nodemon 与 debug 结合
 - [x] 参数校验
-- [ ] 错误码设计
+- [x] sequelize 定义模型
+- [x] error捕获与错误码设计
+- [ ] jwt 权限控制

@@ -1,10 +1,13 @@
 import Schema from 'async-validator'
 import { last, forEach, find, compact, get} from 'loadsh'
+import { HttpException } from '../exception/httpException';
+import errorCode from '../../app/common/errorCode'
+const { PARAMETER_ERROR } = errorCode
 
 
 export default class Validator {
 
-  validate(ctx){
+  async validate(ctx){
     const pathname = ctx.req._parsedUrl.pathname
     const name = last(pathname.split('/'))
 
@@ -15,13 +18,16 @@ export default class Validator {
     this.ctx = ctx
     this.rules = this[name]
     const validator = new Schema(this[name]);
-    validator.validate(this.params, (errors, fields) => {
+    await validator.validate(this.params, (errors, fields) => {
       if (errors) {
         let messages = []
         forEach(errors, (error) => {
           messages.push(error.message)
         })
-        console.log(messages)
+        throw new HttpException({
+          ...PARAMETER_ERROR,
+          message: messages[0]
+        })
       }
     });
   }
@@ -38,9 +44,9 @@ export default class Validator {
   _getParams(key){
     const value = compact([
       get(this.ctx, ['query', key]),
-      get(this.data, ['body', key]),
-      get(this.data, ['path', key]),
-      get(this.data, ['header', key])
+      get(this.ctx, ['body', key]),
+      get(this.ctx, ['path', key]),
+      get(this.ctx, ['header', key])
     ])
 
     return value[0] || ''

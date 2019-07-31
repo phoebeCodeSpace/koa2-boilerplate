@@ -1,5 +1,6 @@
 import { Controller, Post, Get } from '../../utils/router.decorator'
 import UserValidator from '../../validator/UserValidator';
+import { handleResult } from '../../utils/helper';
 
 const $validator = new UserValidator()
 /**
@@ -11,9 +12,9 @@ const $validator = new UserValidator()
 class User {
 
   @Get('/getToken')
-  getToken(ctx){
-    $validator.validate(ctx);
-    ctx.body = 'getToken'
+  async getToken(ctx){
+    await $validator.validate(ctx);
+    handleResult('getToken')
   }
 }
 
