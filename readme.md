@@ -9,3 +9,10 @@
 - [x] sequelize 定义模型
 - [x] error捕获与错误码设计
 - [ ] jwt 权限控制
+- [ ] 日志系统
+
+## use
+
+```bash
+git clone https://github.com/phoebeCodeSpace/koa2-boilerplate.git [your project]
+```

@@ -1,20 +1,20 @@
+import { join } from 'path';
 import Koa from 'koa'
-import { port } from '../config'
-import requireDirectory from 'require-directory'
-import path from 'path'
 import { forEach } from 'loadsh'
+import { port } from '../config'
 
 // 遍历使用中间件
 const useMiddlewares = (app) => {
-  const middlewares = path.join(__dirname,'../middleware')
-  requireDirectory(module, middlewares, {
-    visit: (obj) => {
-      forEach(obj, (middleware)=> {
-        if (middleware instanceof Function){
-          middleware(app)
-        }
-      })
-    }
+  const MIDDLEWARES = ['base', 'exception', 'router']
+
+  forEach(MIDDLEWARES, (filename) => {
+    const path = join(__dirname, `../middleware/${filename}`)
+    const middlewares = require(path)
+    forEach(middlewares, (middleware) => {
+      if (middleware instanceof Function) {
+        middleware(app)
+      }
+    })
   })
 }
 

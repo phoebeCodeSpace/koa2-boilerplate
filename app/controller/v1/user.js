@@ -13,8 +13,9 @@ class User {
 
   @Get('/getToken')
   async getToken(ctx){
-    await $validator.validate(ctx);
-    handleResult('getToken')
+    const parmas = await $validator.validate(ctx);
+    const code = parmas.code
+    handleResult(code)
   }
 }
 

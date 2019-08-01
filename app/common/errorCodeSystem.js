@@ -1,4 +1,4 @@
-export default  {
+const ERROR_CODE_SYSTEM = {
   // 系统类 1
   SYSTEM_ERROR: {
     message: '系统错误',
@@ -15,3 +15,4 @@ export default  {
     code: 20001
   }
 }
+export default ERROR_CODE_SYSTEM
