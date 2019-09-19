@@ -15,6 +15,7 @@
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
     "loadsh": "0.0.4",
     "mysql2": "^1.6.5",
     "require-directory": "^2.1.1",
@@ -32,6 +33,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "cross-env": "^5.2.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "winston": "^3.2.1"
   }
 }

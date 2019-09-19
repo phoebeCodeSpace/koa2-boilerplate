@@ -1,5 +1,5 @@
 import { env } from '../config/index'
-import { HttpException } from '../app/exception/httpException';
+import { HttpException } from '../app/lib/exception';
 
 export const exception = app => {
   app.use(async(ctx, next)=>{
